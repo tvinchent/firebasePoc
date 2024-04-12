@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script>
+      // Configurer Firebase
+      var firebaseConfig = {
+        apiKey: "AIzaSyD-YTvNFAyfBtIWGKQLBq2EKN8LNaSXulA",
+        authDomain: "epsilon-v4.firebaseapp.com",
+        projectId: "epsilon-v4",
+        storageBucket: "epsilon-v4.appspot.com",
+        messagingSenderId: "327398759426",
+        appId: "1:327398759426:web:313548acf6d788f5451b1b",
+      };
+
+      // Initialiser Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Créer une instance de l'authentification Firebase
+      var auth = firebase.auth();
+
+      // Fonction pour se connecter
+      function login(email, password) {
+        auth
+          .signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Connexion réussie
+            var user = userCredential.user;
+            console.log("Connexion réussie avec l'utilisateur", user);
+          })
+          .catch((error) => {
+            // Une erreur s'est produite
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log("Erreur de connexion", errorCode, errorMessage);
+          });
+      }
+
+      // Fonction pour se déconnecter
+      function logout() {
+        auth
+          .signOut()
+          .then(() => {
+            // Déconnexion réussie
+            console.log("Déconnexion réussie");
+          })
+          .catch((error) => {
+            // Une erreur s'est produite
+            console.log("Erreur de déconnexion", error);
+          });
+      }
+
+      // Inscription
+      function signup(email, password) {
+        auth
+          .createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Inscription réussie
+            var user = userCredential.user;
+            console.log("Inscription réussie avec l'utilisateur", user);
+          })
+          .catch((error) => {
+            // Une erreur s'est produite
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log("Erreur d'inscription", errorCode, errorMessage);
+          });
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
