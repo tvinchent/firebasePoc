@@ -1,0 +1,1 @@
+add env.js with apiKey for firebase
